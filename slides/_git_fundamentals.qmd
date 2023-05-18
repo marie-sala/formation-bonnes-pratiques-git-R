@@ -116,8 +116,6 @@ L'utilisation de `Git` nécessite [__certaines notions préalables__]{.orange}:
 - Potentiellement, un grand nombre de commandes
 :::
 
-![Source : [Ici](https://iulianacosmina.com/?p=19452)](img/gitfire.png){height="400"}
-
 ## :warning: Git est complexe {auto-animate=true}
 
 [__Mais__]{.blue2}
@@ -167,28 +165,14 @@ L'utilisation de `Git` nécessite [__certaines notions préalables__]{.orange}:
 
 - Par défaut, le dépôt distant porte l'alias `origin`
 
-<!-- ## Concepts {auto-animate=true}
+## Concepts {auto-animate=true}
 
 _Workflow_ (version littéraire) :
 
 - On travaille sur un dépôt local en éditant des fichiers
 - On dit à `Git` que ces fichiers doivent être suivis (`staging area`)
 - On valide les modifications faites en local (`commit`)
-- On soumet les modifications (`push`) après avoir récupéré la version collective (`pull`) -->
-
-## Concepts {auto-animate=true}
-
-#### _Workflow_ local
-
-![](img/areas.png){fig-align="center" height=400}
-
-Source : [Git Documentation](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F)
-
-## Concepts {auto-animate=true}
-
-#### _Workflow_ complet
-
-![Source : [itnext.io](https://itnext.io/git-concepts-for-newcomers-part-2-git-repository-working-tree-and-staging-area-a2e720bf3528)](img/completeworkflow.png){height="400" width="500"}
+- On soumet les modifications (`push`) après avoir récupéré la version collective (`pull`) 
 
 ## Commandes essentielles {auto-animate=true}
 
