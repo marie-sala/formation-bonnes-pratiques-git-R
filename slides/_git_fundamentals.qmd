@@ -174,36 +174,6 @@ _Workflow_ (version littéraire) :
 - On valide les modifications faites en local (`commit`)
 - On soumet les modifications (`push`) après avoir récupéré la version collective (`pull`) 
 
-## Commandes essentielles {auto-animate=true}
-
-<br> 
-
-| Action     | Commande      |
-|------------|---------------|
-| Cloner un projet | `git clone [url-to-git-repo]` |
-| Afficher les changements | `git status` |
-| Retrouver l'URL du dépôt distant | `git remote -v` |
-
-## Commandes essentielles {auto-animate=true .smaller}
-
-<br>
-
-| Action     | Commande      |
-|------------|---------------|
-| Ajouter des changements à l'index de `Git` | Un seul fichier : `git add <file-name>` <br> Tous les fichiers déjà indexés : `git add -u` <br> Tous les fichiers :warning: : `git add -A` |
-
-<br>
-
-:::{.callout-important}
-## Warning
-
-La méthode `git add -A` peut amener à suivre les modifications
-de fichiers qui ne devraient pas l'être (par exemple, des données).
-
-Il est recommandé de bien réfléchir avant de l'utiliser (ou d'avoir
-un bon `.gitignore`)
-
-:::
 
 ## Commandes essentielles {auto-animate=true}
 
