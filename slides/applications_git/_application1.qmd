@@ -2,7 +2,7 @@
 ## Premiers commits
 
 :::{.incremental}
-1. Créer un dossier 📁 `scripts`
+1. Créer un dossier 📁 `scripts` dans votre projet
 2. Y créer les fichiers `script1.R` et `script2.R`, chacun contenant quelques commandes `R` de votre choix
 3. Ajouter ces fichiers à la zone de *staging* de Git en les cochant dans l'interface `RStudio`
 4. Effectuer un `commit`, auquel on donnera un message descriptif pertinent

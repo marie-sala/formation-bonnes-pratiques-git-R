@@ -2,16 +2,12 @@
 ## Préparation de l'environnement de travail
 
 :::{.incremental}
-1. Créer un compte [`GitHub`](https://github.com/)
-2. Créer un nouveau dépôt **privé** sur `GitHub`
-3. Créer un compte sur le [SSP Cloud](https://datalab.sspcloud.fr/home)
-4. Lancer un service `RStudio`. Dans l'onglet de configuration `Git` du service, fixer la durée du `Cache` pour le stockage des identifiants `GitHub` à une valeur suffisamment élevée
-5. Cloner le dépôt distant sur votre environnement local (ici, le `RStudio` du `Datalab`):
+1. Ouvrir AUS rpython et se rendre sur le `Gitlab` Insee
+2. Si besoin, s'authentifier pour Git sous AUS en suivant [ce tuto](https://gitlab.insee.fr/infrastructure/lss/ausv3/documentation-utilisateurs/-/wikis/Logiciels/Git)
+3. Ouvrir Firefox, aller sur Gitlab, s'identifier sur `Gitlab` en cliquant sur `Sign in`
+4. Créer un nouveau projet vierge **privé** sur `Gitlab`; l'initialiser avec un `README` 
+5. Cloner le dépôt distant sur votre environnement local (votre U: par exemple) depuis RStudio :
     + `File` → `New project` → `Version Control` → `Git`
-6. [Générer un *token*](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (jeton d'authentification) sur `GitHub`
-7. Stocker le *token* sur le `SSP Cloud` (ou un gestionnaire de mot de passe) :
-    + `Mon Compte` -> `Services externes` -> `Jeton d'accès personnel GitHub`
-8. Terminer la procédure de clonage en fournissant le nom d'utilisateur `GitHub` et le *token*
 :::
 
 :::

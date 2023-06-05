@@ -167,23 +167,13 @@ L'utilisation de `Git` nécessite [__certaines notions préalables__]{.orange}:
 
 ## Concepts {auto-animate=true}
 
-_Workflow_ (version littéraire) :
+_Flux de travail_  :
 
 - On travaille sur un dépôt local en éditant des fichiers
 - On dit à `Git` que ces fichiers doivent être suivis (`staging area`)
 - On valide les modifications faites en local (`commit`)
 - On soumet les modifications (`push`) après avoir récupéré la version collective (`pull`) 
 
-
-## Commandes essentielles {auto-animate=true}
-
-<br>
-
-| Action     | Commande      |
-|------------|---------------|
-| Faire un `commit` | `git commit -m "message"`|
-| Pousser les changements locaux (branche `master`) | `git push origin master` |
-| Récupérer les changements distants (branche `master`) | `git pull origin master` |
 
 ## Modes d'authentification
 
