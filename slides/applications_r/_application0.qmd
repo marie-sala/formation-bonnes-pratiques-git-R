@@ -4,7 +4,7 @@
 ## Préparation de l'environnement de travail
 
 :::{.incremental}
-1. Créer un nouveau projet sur [Gitlab] sous AUS
+1. Créer un nouveau projet sur `Gitlab` sous AUS
 2. Cloner le dépôt distant sur votre environnement local (votre "U:" par exemple):
     + `File` → `New project` → `Version Control` → `Git`
 3. Dans le répertoire du projet, insérer les dossiers data et pgm

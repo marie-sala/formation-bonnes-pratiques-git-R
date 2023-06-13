@@ -169,7 +169,6 @@ portion de code plus de deux fois ([**_ne te répète pas_**]{.red2})
 - Un code mal structuré
   - Limite la lisibilité du projet
   - Est très coûteux à maintenir (dette technique)
-:::
 
 :::
 
@@ -480,6 +479,6 @@ Source : [eliocamp.github.io](https://eliocamp.github.io/reproducibility-with-r/
 
 ## Ressources supplémentaires
 
-- La [documentation officielle de `renv`](https://rstudio.github.io/renv/articles/renv.html)
+- La [documentation officielle de `renv`](https://rstudio.github.io/renv/articles/renv.html) (en anglais)
 
 - La [fiche utilitR sur la gestion des dépendances](https://www.book.utilitr.org/03_fiches_thematiques/fiche_gerer_dependances)

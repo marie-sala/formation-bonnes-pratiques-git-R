@@ -52,6 +52,3 @@ pour adopter une structure plus logique :
 :::
 
 :::
-
-
-:::

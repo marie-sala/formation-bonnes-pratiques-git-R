@@ -82,17 +82,14 @@ Améliorations graduelles dans l'échelle de la reproductibilité :
 
 :three: Formats de données
 
-{{< include _r_fundamentals.qmd >}}
-
-{{< include _r_resources.qmd >}}
-
 . . .
 
 :four: Environnements reproductibles
 
 . . .
 
-
+{{< include _r_fundamentals.qmd >}}
+{{< include _r_resources.qmd >}}
 
 # Conclusion
 
