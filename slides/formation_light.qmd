@@ -86,6 +86,13 @@ Améliorations graduelles dans l'échelle de la reproductibilité :
 
 {{< include _r_resources.qmd >}}
 
+. . .
+
+:four: Environnements reproductibles
+
+. . .
+
+
 
 # Conclusion
 

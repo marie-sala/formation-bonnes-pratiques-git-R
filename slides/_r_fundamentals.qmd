@@ -37,7 +37,7 @@
 
 ## :one: Adopter les standards communautaires
 
-> *"Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread"*
+> *"Un bon standard de code est comme une bonne ponctuation: on peut s'en sortir sans, maisçarendleschosesplusfacilesàlire"*
 >
 > [Tidyverse Style Guide](https://style.tidyverse.org/)
 
@@ -47,7 +47,7 @@
 
 . . .
 
-- Il existe un **guide de référence** pour bien coder en `R` : le [Tidyverse style guide](https://style.tidyverse.org/index.html).
+- Il existe un **guide de référence** pour bien coder en `R` : le [Tidyverse style guide](https://style.tidyverse.org/index.html) (en anglais).
 
 
 ## :one: Adopter les standards communautaires {.smaller}
@@ -89,7 +89,7 @@ Dans le cas de {{< fa brands r-project >}} :
 ## Règle d'or
 
 Il faut utiliser une [**fonction**]{.red2} dès qu'on utilise une même
-portion de code plus de deux fois ([**_don't repeat yourself_ (DRY)**]{.red2})
+portion de code plus de deux fois ([**_ne te répète pas_**]{.red2})
 :::
 
 - [Limite les risques d'erreurs]{.orange} liés aux copier/coller
@@ -155,8 +155,8 @@ portion de code plus de deux fois ([**_don't repeat yourself_ (DRY)**]{.red2})
 
 <br>
 
-- [Un cours complet](https://eliocamp.github.io/reproducibility-with-r/) sur la reproductibilité avec `R`
-- Une [présentation très complète](https://mitmat.github.io/slides/2022-05-26-egu/code-data-open-science.html#1) sur le partage de code et de données avec `R`
+- [Un cours complet](https://eliocamp.github.io/reproducibility-with-r/) sur la reproductibilité avec `R` (en anglais)
+- Une [présentation très complète](https://mitmat.github.io/slides/2022-05-26-egu/code-data-open-science.html#1) sur le partage de code et de données avec `R` (en anglais)
 - L'équivalent `Python` en [3A d'ENSAE](https://ensae-reproductibilite.github.io/website/)
 
 
@@ -170,12 +170,6 @@ portion de code plus de deux fois ([**_don't repeat yourself_ (DRY)**]{.red2})
   - Limite la lisibilité du projet
   - Est très coûteux à maintenir (dette technique)
 :::
-
-. . .
-
-::: {layout="[80,30]"}
-
-![](https://www.earthdatascience.org/images/earth-analytics/clean-code/reproducible-science-is-about-being-lazy-hadley-wickham.png)
 
 :::
 
