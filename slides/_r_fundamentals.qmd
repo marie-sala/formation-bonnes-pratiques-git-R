@@ -351,3 +351,135 @@ Source : [eliocamp.github.io](https://eliocamp.github.io/reproducibility-with-r/
 
 
 {{< include applications_r/_application3.qmd >}}
+
+# IV- Environnements reproductibles
+
+## Expérience de pensée
+
+::: {.incremental}
+- Imaginons la situation suivante :
+  - J'installe une version de `R` sur mon poste
+  - Je développe un projet en installant les _packages_ nécessaires
+  - Une fois terminé, je passe au projet suivant, et ainsi de suite.
+
+
+- Quels [**problèmes**]{.orange} puis-je rencontrer au fil des projets ?
+
+- Est-il facile de [**partager**]{.orange} un de mes projets ?
+:::
+
+## Enjeux
+
+- [**Version de**]{.orange} [**R**]{.blue2} [**fixe**]{.orange}, celle de l'installation système
+
+. . .
+
+- [**Conflits de version**]{.orange} : différents projets peuvent requérir différentes versions d'un même _package_.
+
+. . .
+
+- [**Reproductibilité limitée**]{.orange} : difficile de dire quel projet nécessite quel _package_.
+
+. . .
+
+- [**Portabilité limitée**]{.orange} : difficile de préciser dans un fichier les dépendances spécifiques à un projet.
+
+
+## Des environnements reproductibles avec `renv`
+
+- `renv` permet de créer des **env**ironnements **r**eproductibles
+
+. . .
+
+- [**Isolation**]{.orange} : chaque projet dispose de sa propre librairie de packages
+
+. . .
+
+- [**Reproductibilité**]{.orange} : `renv` enregistre les versions exactes des *packages* nécessaires au projet
+
+. . .
+
+- [**Portabilité**]{.orange}: un tiers peut exécuter le projet avec les mêmes spécifications
+
+## Utilisation de `renv`
+
+1. [**Initialisation**]{.orange} (`init`) de l'environnement local du projet
+
+. . .
+
+2. [**Développement**]{.orange} du projet
+
+. . .
+
+3. [**Enregistrement**]{.orange} (`snapshot`) des versions des *packages* installés
+
+. . .
+
+4. [**Restauration**]{.orange} (`restore`) d'un environnement
+
+## :one: Initialisation de l'environnement
+
+::: {.incremental}
+- `renv::init()` dans un projet RStudio crée :
+  - Un dossier `renv` et le fichier `.Rprofile` : activation automatique de l'environnement
+  - Le fichier `renv.lock` : versions des *packages* installés
+:::
+
+. . .
+
+![](img/renv_init.png){height="400" fig-align="center"}
+
+## :two: Développement du projet
+
+::: {.incremental}
+- Une fois l'environnement initialisé, on développe le projet de manière habituelle :
+  - Installations/suppressions/mises à jour de packages
+  - Ecriture de scripts
+:::
+
+. . .
+
+- `renv::status()` : indique les _packages_ installés/supprimés par rapport au fichier `renv.lock`
+
+## :three: Enregistrement de l'environnement {.smaller}
+
+- `renv::snapshot()` : enregistre les versions des _packages_ installés dans le fichier `renv.lock`
+
+. . .
+
+![](img/renv_snapshot.png){height="400" fig-align="center"}
+
+## :four: Restauration de l'environnement
+
+- `renv::restore()` : installe/désinstalle les _packages_ nécessaires pour arriver à l'état spécifié dans le fichier `renv.lock`
+
+. . .
+
+- [**Portabilité**]{.orange} : un tiers peut recréer un environnement avec les mêmes spécifications
+
+
+{{< include applications_r/_application4.qmd >}}
+
+
+## Vers une reproductibilité optimale
+
+::: {.incremental}
+- [**Limites**]{.orange} des environnements virtuels : 
+  - Les [**librairies système**]{.blue2} ne sont pas gérées
+  - Lourdeur de la phase d'installation à chaque changement d'environnement
+  - Peu adaptés à un environnement de production
+:::
+
+. . .
+
+- La [**conteneurisation**]{.orange} (ex : `Docker`) apporte la solution
+
+. . .
+
+- [**Intuition**]{.orange} : au lieu de distribuer la recette pour recréer l'environnement, [**distribuer directement une "machine" qui contient *tout* l'environnement nécessaire au projet**]{.blue2}
+
+## Ressources supplémentaires
+
+- La [documentation officielle de `renv`](https://rstudio.github.io/renv/articles/renv.html)
+
+- La [fiche utilitR sur la gestion des dépendances](https://www.book.utilitr.org/03_fiches_thematiques/fiche_gerer_dependances)
