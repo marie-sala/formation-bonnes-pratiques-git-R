@@ -104,7 +104,6 @@ portion de code plus de deux fois ([**_ne te répète pas_**]{.red2})
 
 - Une tâche = une fonction
 - Une tâche complexe = un enchaînement de fonctions réalisant chacune une tâche simple
-- Limiter l'utilisation de variables globales.
 
 :::
 

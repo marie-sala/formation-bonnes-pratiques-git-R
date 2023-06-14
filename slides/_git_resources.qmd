@@ -3,7 +3,7 @@
 - Pour **aller plus loin**:
     - Formation [Travail collaboratif avec `R`](https://collaboratif-git-formation-insee.netlify.app/index.html)
     - La [documentation `utilitR`](https://www.book.utilitr.org/) propose plusieurs chapitres sur `Git`
-    - La [Bible](https://git-scm.com/book/en/v2) de l'usage de `Git`
+    - La [Bible](https://git-scm.com/book/en/v2) de l'usage de `Git` (en anglais)
 
 . . .
 
