@@ -1,0 +1,147 @@
+# II- Le contrôle de version avec `Git`
+
+## :warning: Git est complexe {auto-animate=true}
+
+L'utilisation de `Git` nécessite [__certaines notions préalables__]{.orange}:
+
+::: {.incremental}
+- Fonctionnement d'un `filesystem`
+- Connaissance basique du terminal `Linux`
+- Potentiellement, un grand nombre de commandes
+:::
+
+## :warning: Git est complexe {auto-animate=true}
+
+[__Mais__]{.blue2}
+
+::: {.incremental}
+- L'**usage quotidien** n'implique que [**quelques commandes**]{.orange}
+- [**Enormément de ressources**]{.orange} disponibles sur internet
+- Des [**interfaces visuelles**]{.orange} (ex: `RStudio`, `Sublime Merge`, `VS Code`) qui facilitent l'apprentissage
+- Un petit investissement individuel pour de [**gros gains collectifs**]{.orange}
+:::
+
+
+## Concepts {auto-animate=true}
+
+#### `Git`, `GitHub`, `GitLab`... quelles différences ?
+
+:::{.incremental}
+- `Git` est un **logiciel** ;
+- Utilisation en ligne de commandes
+- Différentes [__interfaces graphiques__]{.blue2} (`RStudio`, `VS Code`...)
+:::
+
+## Concepts {auto-animate=true}
+
+#### `Git`, `GitHub`, `GitLab`... quelles différences ?
+
+
+:::{.incremental}
+- `GitHub` et `GitLab` sont des **forges logicielles**
+- _Forge_: espace d'archivage de code
+- Des fonctionalités supplémentaires : __réseau social du code__
+:::
+
+:::{.callout-tip}
+
+- `GitHub` : utilisation pour les projets **open-source**
+- `GitLab` : utilisation pour les projets **internes**
+
+:::
+
+
+## Concepts {auto-animate=true}
+
+#### Dépôt local / dépôt distant (`remote`)
+
+![](img/localremote.png){fig-align="center" height=400}
+
+
+
+- Par défaut, le dépôt distant porte l'alias `origin`
+
+## Concepts {auto-animate=true}
+
+_Flux de travail_  :
+
+- On travaille sur un dépôt local en éditant des fichiers
+- On dit à `Git` que ces fichiers doivent être suivis (`staging area`)
+- On valide les modifications faites en local (`commit`)
+- On soumet les modifications (`push`) après avoir récupéré la version collective (`pull`) 
+
+
+## Modes d'authentification
+
+:::{.incremental}
+- [**https**]{.orange}
+  - `git clone https://github.com/username/projet.git`
+  - simple à utiliser
+  - authentification username/token à chaque *push*
+
+- [**ssh**]{.orange}
+  - `git clone git@github.com:username/projet.git`
+  - (plus) complexe à initialiser
+  - authentification automatique 
+:::
+
+## Application 0 {.smaller}
+
+{{< include applications_git/_application0.qmd >}}
+
+## Application 1
+
+{{< include applications_git/_application1.qmd >}}
+
+## Application 2
+
+{{< include applications_git/_application2.qmd >}}
+
+## Bonnes pratiques {auto-animate=true .smaller}
+
+__Que versionne-t-on ?__
+
+:::{.incremental}
+- Essentiellement du [**code source**]{.orange}
+- [__Pas d'outputs__]{.orange} (fichiers `.html`, `.pdf`, modèles...)
+- [__Pas de données__]{.orange}, d'informations locales ou sensibles
+:::
+
+:::{.callout-note}
+
+Pour définir des règles qui évitent de committer tel ou tel fichier, on utilise
+un fichier nommé __`.gitignore`__.
+
+Si on mélange du code et des éléments
+annexes (_output_, données...) dans un même dossier, il [__faut consacrer du temps à ce fichier__]{.orange}.
+
+Le site [`gitignore.io`](https://www.toptal.com/developers/gitignore) peut vous fournir
+des modèles.
+
+N'hésitez pas à y ajouter des règles conservatrices (par exemple `*.csv`), 
+comme cela est expliqué dans [la documentation `utilitR`](https://www.book.utilitr.org/git.html?q=gitignore#gitignore).
+
+:::
+
+## Bonnes pratiques {auto-animate=true .smaller}
+
+__Format des commits__
+
+::: {layout="[40,60]"}
+
+::: {.incremental}
+- [**Fréquence**]{.orange}
+    - Aussi souvent que possible
+    - Le lot de modifications doit "faire sens"
+- [**Messages**]{.orange}
+    - Courts et informatifs (comme un titre de mail)
+    - Décrire **le pourquoi plutôt que le comment** dans le texte
+:::
+
+![](img/titre-commit.png)
+
+:::
+
+## Application 3
+
+{{< include applications_git/_application3.qmd >}}

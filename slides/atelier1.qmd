@@ -1,0 +1,57 @@
+---
+title: Bonnes pratiques pour les projets statistiques
+subtitle: |
+  **[Atelier 1 du PRFS]{.orange}**
+author: |
+  [Romain Avouac](https://github.com/avouacr),
+  [Thomas Faria](https://github.com/ThomasFaria),
+  [Lino Galiana](https://www.linogaliana.fr/),
+  [Olivier Meslin](https://github.com/oliviermeslin),
+  [Tom Seimandi](https://github.com/tomseimandi/)
+# date: 
+slide-number: true
+footer: |
+  Bonnes pratiques pour les projets statistiques
+# uncomment for French presentations:
+lang: fr-FR
+# for blind readers:
+slide-tone: false
+# for @olevitt:
+# chalkboard: # press the B key to toggle chalkboard
+#   theme: whiteboard
+# uncomment to use the multiplex mode:
+#multiplex: true
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    output-file: light.html
+    embed-resources: true
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+
+# Pourquoi s'intéresser aux bonnes pratiques ?
+
+{{< include _intro.qmd >}}
+
+
+
+# Le contrôle de version avec `Git`, pourquoi faire ?
+
+{{< include _git_fundamentals.qmd >}}
+
+# À la semaine prochaine!
+
+:::{.incremental}
+
+- [**Des remarques ?**]{.orange}
+- [**La semaine prochaine**]{.orange}, on parle de comment utiliser Git au quotidien, et comment bien l'utiliser !
+- En attendant, n'hésitez pas à vous manifester si...
+  - Vous souhaitez utiliser Git pour la première fois, on peut vous aider à vous authentifier !
+  - Vous avez des besoins ou des retours d'expérience à faire dans le cadre de ces ateliers
+
+
+:::
