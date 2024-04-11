@@ -1,4 +1,4 @@
-# II- Le contrôle de version avec `Git`
+# Le contrôle de version avec `Git`
 
 ## :warning: Git est complexe {auto-animate=true}
 
@@ -85,19 +85,8 @@ _Flux de travail_  :
   - authentification automatique 
 :::
 
-## Application 0 {.smaller}
+## Démonstration rapide
 
-{{< include applications_git/_application0.qmd >}}
-
-## Application 1
-
-{{< include applications_git/_application1.qmd >}}
-
-## Application 2
-
-{{< include applications_git/_application2.qmd >}}
-
-## Bonnes pratiques {auto-animate=true .smaller}
 
 __Que versionne-t-on ?__
 
@@ -142,6 +131,3 @@ __Format des commits__
 
 :::
 
-## Application 3
-
-{{< include applications_git/_application3.qmd >}}

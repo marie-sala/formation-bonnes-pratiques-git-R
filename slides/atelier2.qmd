@@ -1,7 +1,7 @@
 ---
 title: Bonnes pratiques pour les projets statistiques
 subtitle: |
-  **[Atelier 1 du PRFS]{.orange}**
+  **[Atelier 2 du PRFS]{.orange}**
 author: |
   [Romain Avouac](https://github.com/avouacr),
   [Thomas Faria](https://github.com/ThomasFaria),
@@ -33,28 +33,13 @@ from: markdown+emoji
 ---
 
 
-# Pourquoi s'intéresser aux bonnes pratiques ?
 
-{{< include _intro.qmd >}}
-
+{{< include _git_fundamentals_2.qmd >}}
 
 
-# Le contrôle de version avec `Git`, pourquoi faire ?
-
-{{< include _git_fundamentals.qmd >}}
-
-# À suivre !
-
-:::{.incremental}
-
-- [**Des remarques ?**]{.orange}
-- Retrouvez les supports de ces ateliers sous [**U:/SED/A6-REVENUS FISCAUX/Outils/R/Ateliers R et Git**](U:\SED\A6-REVENUS FISCAUX\Outils\R\Ateliers R et Git)
-- [**La semaine prochaine**]{.orange}, on parle de comment utiliser Git au quotidien, et comment bien l'utiliser !
-- En attendant, n'hésitez pas à vous manifester si...
-  - Vous souhaitez utiliser Git pour la première fois, on peut vous aider à vous authentifier !
-  - Vous avez des besoins ou des retours d'expérience à faire dans le cadre de ces ateliers
+{{< include _git_resources.qmd >}}
 
 
-:::
 
-# 
+# Un exemple d'utilisation de `Git` au PRFS : les bilans de Filosofi aval
+
