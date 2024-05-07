@@ -25,7 +25,7 @@ format:
   # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
   onyxia-revealjs:
   #onyxia-dark-revealjs:
-    output-file: atelier1.html
+    output-file: atelier2.html
     embed-resources: true
 controls: true
 css: custom.css
