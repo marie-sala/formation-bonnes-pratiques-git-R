@@ -92,6 +92,7 @@ Améliorations graduelles dans l'échelle de la reproductibilité :
 . . .
 
 {{< include _r_fundamentals.qmd >}}
+
 {{< include _r_resources.qmd >}}
 
 # Conclusion
