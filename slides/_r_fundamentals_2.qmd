@@ -1,0 +1,311 @@
+
+# II- Structure des projets
+
+## Enjeux
+
+1. Favoriser la [**lisibilité**]{.orange} et la [**maintenabilité**]{.orange}
+
+. . .
+
+2 Construire des projets [**reproductibles**]{.orange}
+
+## :warning: A ne pas reproduire chez vous
+
+<br>
+
+```
+├── report.Rmd
+├── correlation.png
+├── data.csv
+├── data2.csv
+├── fig1.png
+├── figure 2 (copy).png
+├── report.pdf
+├── partial data.csv
+├── script.R
+└── script_final.R
+```
+
+Source : [eliocamp.github.io](https://eliocamp.github.io/reproducibility-with-r/materials/day1/02-projects/)
+
+## Principes généraux
+
+1. Utiliser les [**projets RStudio**]{.orange}
+
+. . .
+
+2. Organiser son projet en [**sous-dossiers**]{.orange}
+
+. . .
+
+3. Donner des [**noms pertinents**]{.orange} aux fichiers
+
+. . .
+
+4. [**Documenter**]{.orange} son projet
+
+. . .
+
+5. (Faire de son projet un [**package**]{.orange})
+
+## :one: Utiliser les projets RStudio
+
+::: {.incremental}
+- [**Objectif**]{.orange} : favoriser la [**reproductibilité**]{.blue2}
+  - Tous les fichiers nécessaires au projet dans un même dossier
+  - Le dossier contenant le projet RStudio est automatiquement utilisé comme ***working directory***
+  - Utilisation de [**chemins relatifs**]{.blue2} plutôt qu'absolus.
+:::
+
+. . .
+
+- **Bonus** : en utilisant `Git`, on s'assure de toujours travailler dans un projet RStudio !
+
+## :two: Organiser son projet en sous-dossiers
+
+- [**Objectif**]{.orange} : adopter une structure arbitraire, mais [**lisible**]{.blue2} et [**cohérente**]{.blue2}
+
+```
+├── data
+│   ├── raw
+│   │   ├── data.csv
+│   │   └── data2.csv
+│   └── derived
+│       └── partial data.csv
+├── R
+|   ├── script.R
+│   ├── script_final.R
+│   └── report.Rmd
+└── output
+    ├── fig1.png
+    ├── figure 2 (copy).png
+    ├── figure10.png
+    ├── correlation.png
+    └── report.pdf
+```
+
+## :three: Donner des noms pertinents aux fichiers
+
+- [**Objectif**]{.orange} : [**auto-documenter**]{.blue2} son projet
+
+```
+├── data
+│   ├── raw
+│   │   ├── dpe_logement_202103.csv
+│   │   └── dpe_logement_202003.csv
+│   └── derived
+│       └── dpe_logement_merged_preprocessed.csv
+├── R
+|   ├── preprocessing.R
+│   ├── generate_plots.R
+│   └── report.Rmd
+└── output
+    ├── histogram_energy_diagnostic.png
+    ├── barplot_consumption_pcs.png
+    ├── correlation_matrix.png
+    └── report.pdf
+```
+
+## :four: Documenter son projet
+
+- Le fichier `README.md`, situé à la racine du projet, est à la fois la **carte d'identité** et la **vitrine du projet**
+
+::: {.incremental}
+- Idéalement, il contient :
+  - Une [**présentation**]{.orange} du contexte et des objectifs
+  - Une description de son [**fonctionnement**]{.orange}
+  - Un guide de [**contribution**]{.orange} (*open-source*)
+:::
+
+. . .
+
+- Quelques modèles de `README.md` complets :
+  - [utilitR](https://github.com/InseeFrLab/utilitR/blob/master/README.md)
+  - [DoReMIFaSol](https://github.com/InseeFrLab/DoReMIFaSol)
+
+## :five: Faire de son projet un *package*
+
+::: {.incremental}
+- Un *package* est la forme maximale de [**modularité**]{.orange}
+  - Contient des [**fonctions**]{.blue2} rangées dans des [**modules**]{.blue2}
+  - Contient également de la [**documentation**]{.blue2}, des [**tests**]{.blue2}, des (méta-)données... 
+
+- [**Avantages**]{.orange}
+  - Idéal pour favoriser la [**réutilisation**]{.blue2} du code
+  - Des [**outils**]{.blue2} de développement : `devtools` et `usethis`
+
+- [**Inconvénients**]{.orange}
+  - Coût de [**maintenance**]{.blue2} élevé
+:::
+
+## Ressources supplémentaires
+
+<br>
+
+- La documentation utilitR sur les [projets RStudio](https://www.book.utilitr.org/03_fiches_thematiques/fiche_rprojects) et les [packages R](https://www.book.utilitr.org/01_r_insee/fiche_installer_packages)
+- La [bible des packages R](https://r-pkgs.org/whole-game.html) (en anglais)
+- Un excellent [workshop sur la reproductibilité avec R](https://eliocamp.github.io/reproducibility-with-r/materials/day1/02-projects/) (en anglais)
+
+
+{{< include applications_r/_application2.qmd >}}
+
+
+# III- Formats de données
+
+## Enjeux
+
+::: {.incremental}
+- Le choix d'un format de données répond à un [**arbitrage**]{.orange} entre plusieurs critères :
+  - [**Finalité**]{.blue2} (traitement, analyse, diffusion)
+  - [**Public cible**]{.blue2}
+  - [**Volumétrie**]{.blue2}
+:::
+
+## Recommandations {.smaller}
+
+- Eviter impérativement les formats de données adhérents à un langage (`RDS`, `RData`, `fst`, `sas7bdat`, etc.).
+
+::: {.incremental}
+- Deux formats à privilégier :
+  - [**CSV**]{.orange} : pour la [**plupart des usages courants**]{.blue2}
+    - _Avantage_ : [**non-compressé**]{.blue2} donc facilement [**lisible**]{.blue2}
+    - _Inconvénients_ : pas de gestion des méta-données, peu adapté aux données volumineuses
+  - [**Parquet**]{.orange} : pour le traitement de [**données volumineuses**]{.blue2}
+    - [**Compressé**]{.blue2} et très [**performant**]{.blue2} en lecture/écriture
+    - Gestion native des méta-données
+:::
+
+
+{{< include applications_r/_application3.qmd >}}
+
+# IV- Environnements reproductibles
+
+## Expérience de pensée
+
+::: {.incremental}
+- Imaginons la situation suivante :
+  - J'installe une version de `R` sur mon poste
+  - Je développe un projet en installant les _packages_ nécessaires
+  - Une fois terminé, je passe au projet suivant, et ainsi de suite.
+
+
+- Quels [**problèmes**]{.orange} puis-je rencontrer au fil des projets ?
+
+- Est-il facile de [**partager**]{.orange} un de mes projets ?
+:::
+
+## Enjeux
+
+- [**Version de**]{.orange} [**R**]{.blue2} [**fixe**]{.orange}, celle de l'installation système
+
+. . .
+
+- [**Conflits de version**]{.orange} : différents projets peuvent requérir différentes versions d'un même _package_.
+
+. . .
+
+- [**Reproductibilité limitée**]{.orange} : difficile de dire quel projet nécessite quel _package_.
+
+. . .
+
+- [**Portabilité limitée**]{.orange} : difficile de préciser dans un fichier les dépendances spécifiques à un projet.
+
+
+## Des environnements reproductibles avec `renv`
+
+- `renv` permet de créer des **env**ironnements **r**eproductibles
+
+. . .
+
+- [**Isolation**]{.orange} : chaque projet dispose de sa propre librairie de packages
+
+. . .
+
+- [**Reproductibilité**]{.orange} : `renv` enregistre les versions exactes des *packages* nécessaires au projet
+
+. . .
+
+- [**Portabilité**]{.orange}: un tiers peut exécuter le projet avec les mêmes spécifications
+
+## Utilisation de `renv`
+
+1. [**Initialisation**]{.orange} (`init`) de l'environnement local du projet
+
+. . .
+
+2. [**Développement**]{.orange} du projet
+
+. . .
+
+3. [**Enregistrement**]{.orange} (`snapshot`) des versions des *packages* installés
+
+. . .
+
+4. [**Restauration**]{.orange} (`restore`) d'un environnement
+
+## :one: Initialisation de l'environnement
+
+::: {.incremental}
+- `renv::init()` dans un projet RStudio crée :
+  - Un dossier `renv` et le fichier `.Rprofile` : activation automatique de l'environnement
+  - Le fichier `renv.lock` : versions des *packages* installés
+:::
+
+. . .
+
+![](img/renv_init.png){height="400" fig-align="center"}
+
+## :two: Développement du projet
+
+::: {.incremental}
+- Une fois l'environnement initialisé, on développe le projet de manière habituelle :
+  - Installations/suppressions/mises à jour de packages
+  - Ecriture de scripts
+:::
+
+. . .
+
+- `renv::status()` : indique les _packages_ installés/supprimés par rapport au fichier `renv.lock`
+
+## :three: Enregistrement de l'environnement {.smaller}
+
+- `renv::snapshot()` : enregistre les versions des _packages_ installés dans le fichier `renv.lock`
+
+. . .
+
+![](img/renv_snapshot.png){height="400" fig-align="center"}
+
+## :four: Restauration de l'environnement
+
+- `renv::restore()` : installe/désinstalle les _packages_ nécessaires pour arriver à l'état spécifié dans le fichier `renv.lock`
+
+. . .
+
+- [**Portabilité**]{.orange} : un tiers peut recréer un environnement avec les mêmes spécifications
+
+
+{{< include applications_r/_application4.qmd >}}
+
+
+## Vers une reproductibilité optimale
+
+::: {.incremental}
+- [**Limites**]{.orange} des environnements virtuels : 
+  - Les [**librairies système**]{.blue2} ne sont pas gérées
+  - Lourdeur de la phase d'installation à chaque changement d'environnement
+  - Peu adaptés à un environnement de production
+:::
+
+. . .
+
+- La [**conteneurisation**]{.orange} (ex : `Docker`) apporte la solution
+
+. . .
+
+- [**Intuition**]{.orange} : au lieu de distribuer la recette pour recréer l'environnement, [**distribuer directement une "machine" qui contient *tout* l'environnement nécessaire au projet**]{.blue2}
+
+## Ressources supplémentaires
+
+- La [documentation officielle de `renv`](https://rstudio.github.io/renv/articles/renv.html) (en anglais)
+
+- La [fiche utilitR sur la gestion des dépendances](https://www.book.utilitr.org/03_fiches_thematiques/fiche_gerer_dependances)

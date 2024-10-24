@@ -1,0 +1,196 @@
+---
+title: Bonnes pratiques pour les projets statistiques
+subtitle: |
+  **[Atelier 3 du PRFS]{.orange}**
+author: |
+  [Romain Avouac](https://github.com/avouacr),
+  [Thomas Faria](https://github.com/ThomasFaria),
+  [Lino Galiana](https://www.linogaliana.fr/),
+  [Olivier Meslin](https://github.com/oliviermeslin),
+  [Tom Seimandi](https://github.com/tomseimandi/)
+# date: 
+slide-number: true
+footer: |
+  Bonnes pratiques pour les projets statistiques
+# uncomment for French presentations:
+lang: fr-FR
+# for blind readers:
+slide-tone: false
+# for @olevitt:
+# chalkboard: # press the B key to toggle chalkboard
+#   theme: whiteboard
+# uncomment to use the multiplex mode:
+#multiplex: true
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    output-file: atelier3.html
+#    embed-resources: true
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+
+
+
+# I- Qualité du code
+
+## Enjeux
+
+- D'une vision utilitariste du code à une vision du code comme [**outil de communication**]{.orange}
+
+. . .
+
+- Favoriser la [**lisibilité**]{.orange} et la [**maintenabilité**]{.orange}
+
+. . .
+
+- Faciliter la [**réutilisation**]{.orange}
+
+. . .
+
+- Assurer la [__transparence__]{.orange} méthodologique
+
+## Principes généraux
+
+1. Adopter les [**standards communautaires**]{.orange}
+
+. . .
+
+2. Utiliser des [**fonctions**]{.orange}
+
+. . .
+
+3. [**Documenter**]{.orange} son code
+
+. . .
+
+4. Indiquer les _packages_ utilisés afin d'éviter les [**conflits**]{.orange}
+
+
+## :one: Adopter les standards communautaires
+
+> *"Un bon standard de code est comme une bonne ponctuation: on peut s'en sortir sans, maisçarendleschosesplusfacilesàlire"*
+>
+> [Tidyverse Style Guide](https://style.tidyverse.org/)
+
+. . .
+
+- Respecter les [conventions]{.orange} du langage dans lequel il est rédigé
+
+. . .
+
+- Il existe un **guide de référence** pour bien coder en `R` : le [Tidyverse style guide](https://style.tidyverse.org/index.html) (en anglais).
+
+
+## :one: Adopter les standards communautaires {.smaller}
+
+Deux outils pratiques aident à respecter les standards :
+
+1. [**_linter_**]{.orange} : programme qui vérifie que le code est __formellement__ conforme à un certain _guidestyle_
+    + signale problèmes formels, sans corriger 
+
+. . .
+
+2. [**_formatter_**]{.orange} : programme qui reformate un code pour le rendre conforme à un certain _guidestyle_
+    + modifie directement le code
+
+. . .
+
+::: {.callout-tip}
+
+- [Exemples d’erreurs repérées]{.blue2} par un _linter_ : 
+    + lignes de code trop longues ou mal indentées, parenthèses non équilibrées, noms de fonctions mal construits…
+- [Exemples d’erreurs __non__ repérées]{.blue2} par un _linter_ :
+    + fonctions mal utilisées, arguments mal spécifiés, structure du code incohérente, code insuffisamment documenté…
+:::
+
+
+## :one: Adopter les standards communautaires {.smaller}
+
+<br>
+
+Dans le cas de {{< fa brands r-project >}} : 
+
+- le [_linter_]{.orange} à utiliser est le _package_ [`lintr`](https://github.com/r-lib/lintr)
+- le [_formatter_]{.orange} à utiliser est le _package_ [`styler`](https://github.com/r-lib/styler).
+    + Existe également le _package_ [`formatR`](https://github.com/yihui/formatR).
+
+## :two: Utiliser des fonctions {.smaller}
+
+::: {.callout-important}
+## Règle d'or
+
+Il faut utiliser une [**fonction**]{.red2} dès qu'on utilise une même
+portion de code plus de deux fois ([**_ne te répète pas_**]{.red2})
+:::
+
+- [Limite les risques d'erreurs]{.orange} liés aux copier/coller
+- Rend le code [plus lisible]{.orange} et [plus compact]{.orange}
+- [Un seul endroit]{.orange} du code à modifier lorsqu'on souhaite modifier le traitement
+- Facilite la [réutilisation]{.orange} et la [documentation]{.orange} du code !
+
+. . .
+
+::: {.callout-tip}
+## Règles pour écrire des fonctions **pertinentes**
+
+- Une tâche = une fonction
+- Une tâche complexe = un enchaînement de fonctions réalisant chacune une tâche simple
+
+:::
+
+## :three: Documenter son code
+
+- Grands principes :
+  - Documenter le [__pourquoi__]{.orange} plutôt que le [__comment__]{.orange}
+  - Privilégier l'auto-documentation via des [**nommages pertinents**]{.orange}.
+
+. . .
+
+::: {.callout-tip}
+## Comment bien documenter un script ?
+
+- [**Minimum**]{.orange} 🚦 : commentaire au début du script pour décrire ce qu'il fait
+- [**Bien**]{.orange} 👍 : commenter les parties "délicates" du code
+- [**Idéal**]{.orange} 💪 : documenter ses fonctions avec la syntaxe `roxygen2`.
+
+:::
+
+
+## :four: Pas d'ambiguïté sur les _packages_ utilisés {.smaller}
+
+- Deux fonctions peuvent avoir le [__même nom__]{.orange} dans des [__packages différents__]{.orange}
+
+. . .
+
+- `R` utilise par défaut la librairie chargée le plus récemment
+
+. . .
+
+- Erreurs difficiles à repérer car il est nécessaire d'exécuter le code
+
+. . .
+
+- Recommandation : indiquer explicitement le _package_ : notation `package::fonction()`
+    + Exemple : `dplyr::filter()`
+
+:::{.callout-tip}
+## Exemple
+- `package1` et `package2` contiennent chacun une fonction appelée `superFonction`.
+- Si `package2` est chargé après `package1`, alors `superFonction` désigne par défaut la fonction de `package2`.
+- Mieux vaut noter `package1::superFonction` et `package2::superFonction`
+:::
+
+
+## Ressources supplémentaires
+
+<br>
+
+- [Un cours complet](https://eliocamp.github.io/reproducibility-with-r/) sur la reproductibilité avec `R` (en anglais)
+- Une [présentation très complète](https://mitmat.github.io/slides/2022-05-26-egu/code-data-open-science.html#1) sur le partage de code et de données avec `R` (en anglais)
+- L'équivalent `Python` en [3A d'ENSAE](https://ensae-reproductibilite.github.io/website/)
+
+

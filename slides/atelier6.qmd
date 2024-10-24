@@ -1,0 +1,153 @@
+---
+title: Bonnes pratiques pour les projets statistiques
+subtitle: |
+  **[Atelier 6 du PRFS]{.orange}**
+author: |
+  [Romain Avouac](https://github.com/avouacr),
+  [Thomas Faria](https://github.com/ThomasFaria),
+  [Lino Galiana](https://www.linogaliana.fr/),
+  [Olivier Meslin](https://github.com/oliviermeslin),
+  [Tom Seimandi](https://github.com/tomseimandi/)
+# date: 
+slide-number: true
+footer: |
+  Bonnes pratiques pour les projets statistiques
+# uncomment for French presentations:
+lang: fr-FR
+# for blind readers:
+slide-tone: false
+# for @olevitt:
+# chalkboard: # press the B key to toggle chalkboard
+#   theme: whiteboard
+# uncomment to use the multiplex mode:
+#multiplex: true
+project:
+  type: default
+  output-dir: _output
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    output-file: _atelier6.html
+#    embed-resources: true
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+  
+# Manipulation de données au format *parquet*
+  
+## Pourquoi cet atelier ?
+  
+- Dès cet été, les fichiers en sortie de Rapsodie seront exclusivement au format parquet
+
+. . . 
+  
+- Besoin de savoir comment importer ces fichiers sous R et les manipuler
+
+. . . 
+
+- Cette fois-ci, on va pratiquer ensemble ! N'hésitez pas à ouvrir AUS dès à présent
+
+## C'est quoi, un fichier parquet ?
+
+Parquet est un format de stockage de données (comme fst, csv, sas7bdat...).
+
+. . . 
+
+Il présente plusieurs avantages :
+
+- il compresse efficacement les données, ce qui le rend adapté pour les données volumineuses
+
+. . . 
+
+- il est utilisable quel que soit le logiciel de traitement des données utilisé (R mais aussi Python, etc)
+
+. . . 
+
+- il a des performances très intéressantes en lecture/écriture
+
+## Quelques remarques
+
+- Les fichiers parquet étant compressé, on ne peut pas les lire avec calc ou le bloc note (comme pour les fichiers csv par exemple)
+
+. . . 
+
+- En plus des données, les fichiers parquet conservent les métadonnées. En particulier, le type de chaque variable (entier, réel, caractère) est conservé.
+
+
+## En pratique : écrire un fichier parquet
+
+Pour lire ou écrire un fichier parquet, on utilise le package [**arrow**]{.orange}
+
+```{.r}
+install.packages("arrow")
+```
+
+## En pratique : écrire un fichier parquet
+
+Importons ensemble un fichier CSV situé sous `V:\DR35-SED\R\Atelier R`, et exportons le en parquet.
+
+```{.r}
+# importation du fichier
+filo21 <- read.csv2("V:/DR35-SED/R/Atelier R/FILO2021_DEC_COM.csv")
+
+# export au format parquet
+library(arrow)
+write_parquet(x = filo21,
+              "U:/filo21.parquet")
+```
+
+. . . 
+
+Au passage, notez la différence de taille entre la même table en CSV et en parquet : 48 Mo en CSV vs 12 Mo en parquet !
+
+
+## En pratique : lire un fichier parquet
+
+Deux fonctions du package arrow permettent de lire un fichier parquet : `read_parquet` et `open_dataset`.
+
+. . . 
+
+
+`read_parquet` est simple d'utilisation
+
+```{.r}
+filo21_parquet <- read_parquet("U:/R/filo21.parquet",
+                               col_select = c("CODGEO", "Q221"))
+```
+
+. . . 
+
+
+`open_dataset` est à privilégier pour les tables volumineuses, la syntaxe est un peu particulière :
+
+```{.r}
+donnees_filo21 <- open_dataset("U:/R/filo21.parquet")
+
+requete <- donnees_filo21 %>%
+  select(CODGEO, Q221)
+  
+resultat <- requete %>%
+  collect()
+```
+
+## Une option bien pratique : le partitionnement
+
+Partitionner un fichier = le découper selon une [**clé de partitionnement**]{.orange}
+
+. . . 
+
+La clé de partitionnement peut être une ou plusieurs variables.
+
+. . . 
+
+En pratique, les données seront stockées en de nombreux fichiers : un fichier par valeur prise par la clé de partitionnement
+
+. . . 
+
+Très utile pour les tables volumineuses !
+
+## Pour en savoir plus :
+
+La fiche d' [UtilitR](https://book.utilitr.org/03_Fiches_thematiques/Fiche_import_fichiers_parquet.html) consacrée au format Parquet

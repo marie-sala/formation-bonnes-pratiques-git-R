@@ -1,0 +1,209 @@
+---
+title: Bonnes pratiques pour les projets statistiques
+subtitle: |
+  **[Atelier 4 du PRFS]{.orange}**
+author: |
+  [Romain Avouac](https://github.com/avouacr),
+  [Thomas Faria](https://github.com/ThomasFaria),
+  [Lino Galiana](https://www.linogaliana.fr/),
+  [Olivier Meslin](https://github.com/oliviermeslin),
+  [Tom Seimandi](https://github.com/tomseimandi/)
+# date: 
+slide-number: true
+footer: |
+  Bonnes pratiques pour les projets statistiques
+# uncomment for French presentations:
+lang: fr-FR
+# for blind readers:
+slide-tone: false
+# for @olevitt:
+# chalkboard: # press the B key to toggle chalkboard
+#   theme: whiteboard
+# uncomment to use the multiplex mode:
+#multiplex: true
+project:
+  type: default
+  output-dir: _output
+format:
+  # pick the light mode (onyxia-revealjs) or the dark mode (onyxia-dark-revealjs)
+  onyxia-revealjs:
+  #onyxia-dark-revealjs:
+    output-file: _atelier4.html
+#    embed-resources: true
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+# I- Structure des projets
+
+## Enjeux
+
+1. Favoriser la [**lisibilité**]{.orange} et la [**maintenabilité**]{.orange}
+
+. . .
+
+2 Construire des projets [**reproductibles**]{.orange}
+
+## :warning: A ne pas reproduire chez vous
+
+<br>
+
+```
+├── report.Rmd
+├── correlation.png
+├── data.csv
+├── data2.csv
+├── fig1.png
+├── figure 2 (copy).png
+├── report.pdf
+├── partial data.csv
+├── script.R
+└── script_final.R
+```
+
+Source : [eliocamp.github.io](https://eliocamp.github.io/reproducibility-with-r/materials/day1/02-projects/)
+
+## Principes généraux
+
+1. Utiliser les [**projets RStudio**]{.orange}
+
+. . .
+
+2. Organiser son projet en [**sous-dossiers**]{.orange}
+
+. . .
+
+3. Donner des [**noms pertinents**]{.orange} aux fichiers
+
+. . .
+
+4. [**Documenter**]{.orange} son projet
+
+. . .
+
+5. (Faire de son projet un [**package**]{.orange})
+
+## :one: Utiliser les projets RStudio
+
+::: {.incremental}
+- [**Objectif**]{.orange} : favoriser la [**reproductibilité**]{.blue2}
+  - Tous les fichiers nécessaires au projet dans un même dossier
+  - Le dossier contenant le projet RStudio est automatiquement utilisé comme ***working directory***
+  - Utilisation de [**chemins relatifs**]{.blue2} plutôt qu'absolus.
+:::
+
+. . .
+
+- **Bonus** : en utilisant `Git`, on s'assure de toujours travailler dans un projet RStudio !
+
+## :two: Organiser son projet en sous-dossiers
+
+- [**Objectif**]{.orange} : adopter une structure arbitraire, mais [**lisible**]{.blue2} et [**cohérente**]{.blue2}
+
+```
+├── data
+│   ├── raw
+│   │   ├── data.csv
+│   │   └── data2.csv
+│   └── derived
+│       └── partial data.csv
+├── R
+|   ├── script.R
+│   ├── script_final.R
+│   └── report.Rmd
+└── output
+    ├── fig1.png
+    ├── figure 2 (copy).png
+    ├── figure10.png
+    ├── correlation.png
+    └── report.pdf
+```
+
+## :three: Donner des noms pertinents aux fichiers
+
+- [**Objectif**]{.orange} : [**auto-documenter**]{.blue2} son projet
+
+```
+├── data
+│   ├── raw
+│   │   ├── dpe_logement_202103.csv
+│   │   └── dpe_logement_202003.csv
+│   └── derived
+│       └── dpe_logement_merged_preprocessed.csv
+├── R
+|   ├── preprocessing.R
+│   ├── generate_plots.R
+│   └── report.Rmd
+└── output
+    ├── histogram_energy_diagnostic.png
+    ├── barplot_consumption_pcs.png
+    ├── correlation_matrix.png
+    └── report.pdf
+```
+
+## :four: Documenter son projet
+
+- Le fichier `README.md`, situé à la racine du projet, est à la fois la **carte d'identité** et la **vitrine du projet**
+
+::: {.incremental}
+- Idéalement, il contient :
+  - Une [**présentation**]{.orange} du contexte et des objectifs
+  - Une description de son [**fonctionnement**]{.orange}
+  - Un guide de [**contribution**]{.orange} (*open-source*)
+:::
+
+. . .
+
+- Quelques modèles de `README.md` complets :
+  - [utilitR](https://github.com/InseeFrLab/utilitR/blob/master/README.md)
+  - [DoReMIFaSol](https://github.com/InseeFrLab/DoReMIFaSol)
+
+## :five: Faire de son projet un *package*
+
+::: {.incremental}
+- Un *package* est la forme maximale de [**modularité**]{.orange}
+  - Contient des [**fonctions**]{.blue2} rangées dans des [**modules**]{.blue2}
+  - Contient également de la [**documentation**]{.blue2}, des [**tests**]{.blue2}, des (méta-)données... 
+
+- [**Avantages**]{.orange}
+  - Idéal pour favoriser la [**réutilisation**]{.blue2} du code
+  - Des [**outils**]{.blue2} de développement : `devtools` et `usethis`
+
+- [**Inconvénients**]{.orange}
+  - Coût de [**maintenance**]{.blue2} élevé
+:::
+
+## Ressources supplémentaires
+
+<br>
+
+- La documentation utilitR sur les [projets RStudio](https://www.book.utilitr.org/03_fiches_thematiques/fiche_rprojects) et les [packages R](https://www.book.utilitr.org/01_r_insee/fiche_installer_packages)
+- La [bible des packages R](https://r-pkgs.org/whole-game.html) (en anglais)
+- Un excellent [workshop sur la reproductibilité avec R](https://eliocamp.github.io/reproducibility-with-r/materials/day1/02-projects/) (en anglais)
+
+
+# II- Formats de données
+
+## Enjeux
+
+::: {.incremental}
+- Le choix d'un format de données répond à un [**arbitrage**]{.orange} entre plusieurs critères :
+  - [**Finalité**]{.blue2} (traitement, analyse, diffusion)
+  - [**Public cible**]{.blue2}
+  - [**Volumétrie**]{.blue2}
+:::
+
+## Recommandations {.smaller}
+
+- Eviter impérativement les formats de données adhérents à un langage (`RDS`, `RData`, `fst`, `sas7bdat`, etc.).
+
+::: {.incremental}
+- Deux formats à privilégier :
+  - [**CSV**]{.orange} : pour la [**plupart des usages courants**]{.blue2}
+    - _Avantage_ : [**non-compressé**]{.blue2} donc facilement [**lisible**]{.blue2}
+    - _Inconvénients_ : pas de gestion des méta-données, peu adapté aux données volumineuses
+  - [**Parquet**]{.orange} : pour le traitement de [**données volumineuses**]{.blue2}
+    - [**Compressé**]{.blue2} et très [**performant**]{.blue2} en lecture/écriture
+    - Gestion native des méta-données
+:::
