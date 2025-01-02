@@ -1,0 +1,198 @@
+---
+title: Bonnes pratiques pour les projets statistiques
+subtitle: |
+  **[Atelier 10 du PRFS]{.orange}**
+slide-number: true
+footer: |
+  Bonnes pratiques pour les projets statistiques
+lang: fr-FR
+slide-tone: false
+project:
+  type: default
+  output-dir: _output
+editor: source
+format: 
+  onyxia-revealjs:
+    output-file: _atelier10.html
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+# Tester son code : de quoi parle-t-on ?
+
+## On le fait tous déjà !
+
+Quand on écrit du code, [on le teste souvent spontanément]{.orange} :
+
+-   on vérifie que le code compile correctement
+-   on ouvre la table en sortie pour vérifier qu'une variable créée a bien la forme attendue
+
+...
+
+## On le fait tous déjà !
+
+Souvent, ces tests sont effectués dans la console directement après avoir écrit le code.
+
+. . .
+
+Inconvénients :
+
+-   dès qu'on modifie le code, il faut [réécrire]{.orange} les tests dans la console (ça prend du temps !)
+-   [pas de garantie]{.orange} que le code fonctionne toujours si on modifie la chaîne en amont.
+
+## Une bonne pratique : déléguer les tests
+
+Un premier niveau de contrôle : [faire relire son code]{.orange} par un·e collègue.
+
+Collègue qui repérera sans doute des choses à corriger car il a plus de recul.
+
+. . .
+
+Les relectures sont plus faciles si on parle la même langue! D'où l'intérêt d'utiliser les mêmes conventions (cf utilisation d'un [*linter*]{.orange} présenté lors de l'atelier 3)
+
+## Une bonne pratique : déléguer les tests
+
+Côté organisation :
+
+:::{.incremental}
+-   il est toujours possible de passer une tête dans le bureau d'à côté pour demander à un collègue s'il veut bien relire un bout de code
+-   possibilité de formaliser avec les *merge requests* sous [Git]{.orange} (ex de l'ERFS)
+:::
+
+## Un peu de théorie
+
+En informatique, les tests font partie intégrante du développement.
+
+Concrètement, il s'agit de [formaliser]{.orange} et d'[automatiser]{.orange} les tests réalisés dans la console une seule fois.
+
+## Différents tests pour différents usages
+
+![](img/pyramide-test.png){fig-align="center" height="400"}
+
+::: aside
+Source : blog.octo.com
+:::
+
+## Le [*test driven development*]{.orange} : coder par les tests
+
+Il existe une méthode de codage par les tests :
+
+Les tests sont écrits avant le code.
+
+Le but est de développer un code qui permette de valider les tests (pas plus !).
+
+. . .
+
+::: callout-note
+Pour pouvoir écrire des tests il faut des [spécifications]{.orange} claires !
+:::
+
+## Un exemple : la fonction d'appariement exact de Rapsodie
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+library(data.table)
+
+appariementExact <- function(fichierEnq, fichierAdm){
+  appExact <- unique(fichierEnq[fichierAdm, nomatch = 0])
+  return(appExact)
+}
+```
+
+Des idées de tests unitaires :
+
+-   vérifier qu'il n'y a pas de doublon dans la table en sortie
+-   vérifier le comportement de la fonction si une des deux tables en entrée est vide
+-   vérifier l'exactitude des appariements
+-   ...
+
+## Un exemple : la fonction d'appariement exact de Rapsodie
+
+```{r}
+#| echo: true
+#| code-fold: show
+#| code-line-numbers: 1-6,9-13,15-16
+
+library(tinytest)
+
+fichierEnq <- data.table(
+  nom = rep("Martin", 3),
+  prenom = rep("Jean", 3)
+)
+setkey(fichierEnq, nom, prenom)
+
+fichierAdm <- data.table(
+  nom = "Martin",
+  prenom = "Jean",
+  id_adm = "000001"
+)
+setkey(fichierAdm, nom, prenom)
+
+# Vérification qu'il n'y a pas de doublon dans la table en sortie
+expect_false(duplicated(appariementExact(fichierEnq, fichierAdm)))
+```
+
+## Un exemple : la fonction d'appariement exact de Rapsodie
+
+```{r}
+#| echo: true
+#| code-fold: show
+#| code-line-numbers: 1-6,9-13,15-16
+
+library(tinytest)
+
+fichierEnq <- data.table(
+  nom = "Martin",
+  prenom = "Jean"
+)
+setkey(fichierEnq, nom, prenom)
+
+fichierAdm <- data.table(
+  nom = "Martin",
+  prenom = "Jean",
+  id_adm = "000001"
+)
+setkey(fichierAdm, nom, prenom)
+
+# Vérification que l'appariement donne le résultat escompté
+expect_equal(appariementExact(fichierEnq, fichierAdm), fichierAdm)
+```
+
+## Un exemple : la fonction d'appariement exact de Rapsodie
+
+Un exemple de test d'intégration : vérifier que l'enrichissement fonctionne toujours correctement, y compris si la fonction d'appariement est modifiée.
+
+. . .
+
+Ce genre de tests s'apparente à des tests de [*non-régression*]{.orange} : on vérifie qu'une modification du code à un endroit donné ne vient pas casser la chaîne en aval.
+
+
+## Sur quelles données tester mon code ?
+
+Plusieurs stratégies existent :
+
+-   créer des exemples à la volée, comme dans l'exemple précédent
+-   créer une base de données de test qu'on stocke dans un coffre, qui comprend notamment des cas limites
+
+## Les packages R pour automatiser les tests
+
+Le package historique qui permet de tester son code R est [*testthat*]{.orange}
+
+Un autre package, plus léger : [*tinytest*]{.orange}
+
+::: callout-caution
+Ces packages sont faits principalement pour tester des fonctions comprises dans des **packages**, même si on peut tester des fonctions hors packages
+:::
+
+. . .
+
+Une bonne pratique : séparer les scripts de tests des scripts de la chaîne.
+
+## Tester les parties du code les plus sensibles
+
+Il est possible d'estimer le [taux de couverture]{.orange} des tests (à l'aide du package *covr* par exemple).
+
+Pour nos chaînes, une première étape serait d'identifier les fonctions les plus cruciales/fragiles, afin de mettre en place des tests automatiques.
