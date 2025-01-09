@@ -1,0 +1,131 @@
+---
+title: Bonnes pratiques pour les projets statistiques
+subtitle: |
+  **[Atelier 13 du PRFS]{.orange}**
+slide-number: true
+footer: |
+  Bonnes pratiques pour les projets statistiques
+lang: fr-FR
+slide-tone: false
+project:
+  type: default
+  output-dir: _output
+editor: source
+format: 
+  onyxia-revealjs:
+    output-file: _atelier13.html
+controls: true
+css: custom.css
+from: markdown+emoji
+---
+
+# Les branches sous Git
+
+![](img/branches.png){fig-align="center" height="400"}
+
+## Qu'est-ce qu'une branche ?
+
+Les [branches]{.orange} sont le principal atout de Git !
+
+Quand vous créez un projet, il existe une branche par défaut : la branche principale qui s'appelle généralement [main]{.orange} (ou plus rarement master).
+
+```{mermaid}
+---
+title: Un projet avec juste une branche principale
+---
+    gitGraph
+       commit
+       commit
+       commit
+```
+
+Dans les rouages de Git, une branche est un pointeur : chaque commit pointe vers une branche.
+
+## Pourquoi utiliser les branches ?
+
+Prenons un exemple pratique.
+
+Vous souhaitez revoir un modèle d'imputation sur la chaîne ERFS.
+Or la chaîne tourne bien en production, vous ne voulez pas introduire de bugs.
+
+La solution : laisser la branche principale inchangée.
+Introduire les modifications sur une branche dédiée.
+
+
+```{mermaid}
+---
+title: Création d'une branche de développement
+---
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+```
+
++ démonstration en direct
+
+## Comment utiliser les branches ?
+
+Une fois les développements et les tests effectués dans la branche créée, on la [fusionne]{.orange} avec la branche principale.
+
+Le cas simple :
+
+```{mermaid}
+---
+title: Fusion avec le main
+---
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+   checkout main
+   merge develop
+   commit
+   commit
+```
+
++ démonstration en direct
+
+## Comment utiliser les branches ?
+
+Le cas un peu plus compliqué (mais rien d'insurmontable) : depuis la création de la branche, des changements ont été apportés dans le main.
+
+Si les mêmes parties du code sont concernées, alors il faudra gérer des conflits.
+
+```{mermaid}
+---
+title: Fusion avec le main avec possiblement des conflits
+---
+
+    gitGraph
+       commit
+       commit
+       branch develop
+       commit
+       commit
+       commit
+       checkout main
+       commit
+       commit
+       merge develop
+       commit
+       commit
+
+```
+
++ démonstration en direct
+
+## Les bonnes pratiques
+
+:::{.incremental}
+- Nommer sa branche : de préférence avec la fonctionnalité qu'on développe, plutôt qu'avec son nom
+- Git ne remplace pas une bonne organisation au sein d'un projet. Plus il y a d'échanges, moins il y a de risque que deux personnes travaillent sur les mêmes parties du code
+- Pour éviter d'avoir trop de retard sur la branche principale, découper ses développements en branches courtes dans le temps
+- Pour une appli en production : on ne fait jamais de modif directement dans le main, on passe par une branche et une merge request
+:::
